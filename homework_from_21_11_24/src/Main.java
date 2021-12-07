@@ -45,17 +45,34 @@ public class Main {
     /* 3. Написать метод, который принимает строку и паттерн, и возвращает количество вхождений паттерна в строку.
         Пример: ("Hello world", "l") -> 3 */
 
-    static int countPattern(String str1, String str2) {
-        int sum = 0;
+    static int countPattern(String str1, String pattern) {
+        int count = 0;
         int index = 0;
         while(index < str1.length()) {
-            index = str1.indexOf(str2, index);
+            index = str1.indexOf(pattern, index);
             if(index == -1)
                 break;
             index++;
-            sum++;
+            count++;
         }
-        return sum;
+        return count;
     }
 
+    /*2. (*) Дана строка, состоящая только из слов и пробелов, и число N. Вернуть новую строку максимальной длины,
+        состоящую из начала исходной строки, содержащую ТОЛЬКО слова целиком, при этом длины не больше чем N.
+        Пример: (Hello world guys, 8 ) -> Hello. (Hello world guys, 12 ) -> Hello world. (Hello world guys, 16+ ) ->
+        Hello world guys. */
+
+    static String cutString(String str, int n) {
+        if (n >= str.length())
+            return str;
+
+        String cut = str.substring(0, n + 1);
+
+        int lastSpaceIndex = cut.lastIndexOf(" ");
+        if (lastSpaceIndex < 0)
+            return "";
+
+        return cut.substring(0, lastSpaceIndex);
+    }
 }
