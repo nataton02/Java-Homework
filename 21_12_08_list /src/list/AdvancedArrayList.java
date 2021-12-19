@@ -82,31 +82,15 @@ public class AdvancedArrayList<T> implements CustomList<T>{
         return res;
     }
 
-    //TODO complete
     @Override
     public boolean removeByValue(T value) {
-        int index = 0;
-        boolean isFound = false;
         for (int i = 0; i < source.length; i++) {
-            if(value.equals(source[i]))
-                isFound = true;
-                index = i;
-                break;
+            if (source[i].equals(value)) {
+                removeById(i);
+                return true;
+            }
         }
-
-         if (!isFound)
-            return false;
-
-        T[] newSource = (T[]) new Object[source.length - 1];
-
-        for (int i = 0; i < index; i++) {
-            newSource[i] = source[i];
-        }
-        for (int i = index; i < newSource.length; i++) {
-            newSource[i] = source[i + 1];
-        }
-        source = newSource;
-        return true;
+        return false;
     }
 
     public void println() {
