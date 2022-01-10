@@ -5,6 +5,7 @@ import randome_rule.IRandomeRule;
 import java.util.Random;
 
 public class MaxRandomRule implements IRandomeRule {
+    private final Random rnd = new Random();
     private final int max;
 
     public MaxRandomRule(int max) {
@@ -13,7 +14,6 @@ public class MaxRandomRule implements IRandomeRule {
 
     @Override
     public int nextInt() {
-        Random rnd = new Random();
         return rnd.nextInt(max); // generates random numbers from 0 inclusive to max exclusive
     }
 }

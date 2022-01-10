@@ -25,8 +25,8 @@ public class Main {
         IRandomeRule listRandomRule = new ListRandomRule(numbers);
         RandomGenerator listRandomGenerator = new RandomGenerator(listRandomRule);
 
-        System.out.println(maxRandomGenerator.generate(10).toString());
-        System.out.println(rangeRandomGenerator.generate(10).toString());
-        System.out.println(listRandomGenerator.generate(10).toString());
+        System.out.println(maxRandomGenerator.generate(10));
+        System.out.println(rangeRandomGenerator.generate(10));
+        System.out.println(listRandomGenerator.generate(10));
     }
 }

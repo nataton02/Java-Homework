@@ -16,7 +16,6 @@ public class RandomGenerator {
      * @return
      */
     public List<Integer> generate(int n) {
-        //TODO implement. Generate n random numbers using randomRule.nextInt()
         List<Integer> numbers = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             numbers.add(randomRule.nextInt());
