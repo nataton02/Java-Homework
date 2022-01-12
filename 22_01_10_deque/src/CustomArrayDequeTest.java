@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CustomArrayDequeTest {
@@ -7,28 +9,28 @@ class CustomArrayDequeTest {
 
     @Test
     public void testGetFirst_emptyArray_throwsIndexOutOfBoundsException() {
-        assertThrows(IndexOutOfBoundsException.class, () ->{
+        assertThrows(NoSuchElementException.class, () ->{
             deque.getFirst();
         });
     }
 
     @Test
     public void testGetLast_emptyArray_throwsIndexOutOfBoundsException() {
-        assertThrows(IndexOutOfBoundsException.class, () ->{
+        assertThrows(NoSuchElementException.class, () ->{
             deque.getLast();
         });
     }
 
     @Test
     public void testRemoveFirst_emptyArray_throwsIndexOutOfBoundsException() {
-        assertThrows(IndexOutOfBoundsException.class, () ->{
+        assertThrows(NoSuchElementException.class, () ->{
             deque.removeFirst();
         });
     }
 
     @Test
     public void testRemoveLast_emptyArray_throwsIndexOutOfBoundsException() {
-        assertThrows(IndexOutOfBoundsException.class, () ->{
+        assertThrows(NoSuchElementException.class, () ->{
             deque.removeLast();
         });
     }

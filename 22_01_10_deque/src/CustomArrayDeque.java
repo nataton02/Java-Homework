@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 //TODO implement other methods. Write tests
 public class CustomArrayDeque<T> implements CustomDeque<T>{
     private T[] source;
@@ -36,25 +38,22 @@ public class CustomArrayDeque<T> implements CustomDeque<T>{
             j++;
         }
 
-        source = newSource;
         firstElementIndex = 0;
+        source = newSource;
     }
 
     @Override
     public T getFirst() {
         if(size == 0)
-            throw new IndexOutOfBoundsException();
+            throw new NoSuchElementException();
 
         return source[firstElementIndex];
     }
 
     @Override
     public T removeFirst() {
-        if(size == 0)
-            throw new IndexOutOfBoundsException();
-
-        T res = source[firstElementIndex];
-        firstElementIndex = firstElementIndex + 1;
+        T res = getFirst();
+        firstElementIndex = (firstElementIndex + 1) % source.length;
         size--;
         return res;
     }
@@ -65,24 +64,23 @@ public class CustomArrayDeque<T> implements CustomDeque<T>{
             increaseCapacity();
         }
 
-        source[size] = elt;
+        int newLastIndex = (firstElementIndex + size) % source.length;
+        source[newLastIndex] = elt;
         size++;
     }
 
     @Override
     public T getLast() {
         if(size == 0)
-            throw new IndexOutOfBoundsException();
+            throw new NoSuchElementException();
 
-        return source[size - 1];
+        int newLastIndex = (firstElementIndex + size - 1) % source.length;
+        return source[newLastIndex];
     }
 
     @Override
     public T removeLast() {
-        if(size == 0)
-            throw new IndexOutOfBoundsException();
-
-        T res = source[size - 1];
+        T res = getLast();
         size--;
         return res;
     }
