@@ -159,6 +159,6 @@ class CustomArrayDequeTest {
             assertEquals(expArray[i], elt);
             i++;
         }
-        assertEquals(5, deque.size());
+        assertEquals(5, i);
     }
 }
