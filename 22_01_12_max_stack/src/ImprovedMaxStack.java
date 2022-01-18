@@ -1,15 +1,18 @@
 import java.util.ArrayDeque;
-import java.util.Collections;
 import java.util.Deque;
 import java.util.NoSuchElementException;
 
+public class ImprovedMaxStack implements MaxStack{
 
-public class NaiveMaxStack implements MaxStack{
-
-    private final Deque<Integer> source = new ArrayDeque<>();
+    Deque<Integer> source = new ArrayDeque<>();
+    Deque<Integer> currentMaxStack = new ArrayDeque<>();
 
     @Override
     public void add(int elt) {
+        if(source.size() == 0)
+            currentMaxStack.add(elt);
+        else
+            currentMaxStack.add(Math.max(currentMaxStack.getLast(), elt));
         source.addLast(elt);
     }
 
@@ -20,7 +23,10 @@ public class NaiveMaxStack implements MaxStack{
 
     @Override
     public int remove() {
-        return source.removeLast();
+        int res = source.getLast();
+        source.removeLast();
+        currentMaxStack.removeLast();
+        return res;
     }
 
     @Override
@@ -33,12 +39,6 @@ public class NaiveMaxStack implements MaxStack{
         if (source.size() == 0)
             throw new NoSuchElementException();
 
-        int max = source.getFirst();
-        for (int elt : source) {
-            if (elt > max)
-                max = elt;
-        }
-        return max;
+        return currentMaxStack.getLast();
     }
-
 }
