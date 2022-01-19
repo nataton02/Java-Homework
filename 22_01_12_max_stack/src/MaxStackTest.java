@@ -5,26 +5,26 @@ import java.util.NoSuchElementException;
 import static org.junit.jupiter.api.Assertions.*;
 
 abstract class MaxStackTest {
-    MaxStack source;
+    MaxStack maxStack;
 
     @Test
     public void testGetMax_empty() {
         assertThrows(NoSuchElementException.class, () ->{
-            source.getMax();
+            maxStack.getMax();
         });
     }
 
     @Test
     public void testGet_empty() {
         assertThrows(NoSuchElementException.class, () ->{
-            source.get();
+            maxStack.get();
         });
     }
 
     @Test
     public void TestRemove__empty() {
         assertThrows(NoSuchElementException.class, () ->{
-            source.get();
+            maxStack.get();
         });
     }
 
@@ -32,56 +32,56 @@ abstract class MaxStackTest {
 
     @Test
     public void testAddGet_empty() {
-        source.add(5);
-        assertEquals(5, source.get());
+        maxStack.add(5);
+        assertEquals(5, maxStack.get());
     }
 
     @Test
     public void testAddGet_twoElements() {
-        source.add(5);
-        source.add(10);
-        assertEquals(10, source.get());
+        maxStack.add(5);
+        maxStack.add(10);
+        assertEquals(10, maxStack.get());
     }
 
     @Test
     public void testRemoveSize_oneElement() {
-        source.add(5);
-        assertEquals(5, source.remove());
-        assertEquals(0, source.size());
+        maxStack.add(5);
+        assertEquals(5, maxStack.remove());
+        assertEquals(0, maxStack.size());
     }
 
     @Test
     public void testRemoveSize_twoElements() {
-        source.add(5);
-        source.add(10);
-        assertEquals(10, source.remove());
-        assertEquals(1, source.size());
+        maxStack.add(5);
+        maxStack.add(10);
+        assertEquals(10, maxStack.remove());
+        assertEquals(1, maxStack.size());
     }
 
     @Test
     public void testGetMax_1Element() {
-        source.add(2);
-        assertEquals(2, source.getMax());
+        maxStack.add(2);
+        assertEquals(2, maxStack.getMax());
     }
 
     @Test
     public void testGetMax_2Elements() {
-        source.add(2);
-        source.add(5);
-        assertEquals(5, source.getMax());
+        maxStack.add(2);
+        maxStack.add(5);
+        assertEquals(5, maxStack.getMax());
     }
 
     @Test
     public void testGetMaxSize_severalElements() {
-        source.add(2);
-        source.add(5);
-        source.add(10);
-        source.add(5);
-        source.add(25);
-        source.remove();
-        source.add(6);
-        source.add(10);
-        assertEquals(10, source.getMax());
-        assertEquals(6, source.size());
+        maxStack.add(2);
+        maxStack.add(5);
+        maxStack.add(10);
+        maxStack.add(5);
+        maxStack.add(25);
+        maxStack.remove();
+        maxStack.add(6);
+        maxStack.add(10);
+        assertEquals(10, maxStack.getMax());
+        assertEquals(6, maxStack.size());
     }
 }

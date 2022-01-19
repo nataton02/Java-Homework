@@ -23,8 +23,7 @@ public class ImprovedMaxStack implements MaxStack{
 
     @Override
     public int remove() {
-        int res = source.getLast();
-        source.removeLast();
+        int res = source.removeLast();
         currentMaxStack.removeLast();
         return res;
     }
@@ -36,9 +35,6 @@ public class ImprovedMaxStack implements MaxStack{
 
     @Override
     public int getMax() {
-        if (source.size() == 0)
-            throw new NoSuchElementException();
-
         return currentMaxStack.getLast();
     }
 }

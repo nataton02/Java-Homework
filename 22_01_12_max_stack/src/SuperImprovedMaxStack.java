@@ -23,10 +23,9 @@ public class SuperImprovedMaxStack implements MaxStack{
 
     @Override
     public int remove() {
-        int res = source.getLast();
-        if(source.getLast() == currentMaxStack.getLast())
+        int res = source.removeLast();
+        if(res == currentMaxStack.getLast())
             currentMaxStack.removeLast();
-        source.removeLast();
         return res;
     }
 
