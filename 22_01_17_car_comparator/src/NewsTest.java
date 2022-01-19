@@ -25,6 +25,6 @@ class NewsTest {
         News news1 = new News("world", 7);
         News news2 = new News("Hello", 7);
 
-        assertTrue(news1.compareTo(news2) == 0);
+        assertEquals(news1.compareTo(news2), 0);
     }
 }
