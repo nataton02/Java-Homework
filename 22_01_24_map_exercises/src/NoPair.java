@@ -21,7 +21,7 @@ public class NoPair {
 
         Iterator<Integer> iterator = pairs.keySet().iterator();
 
-        int res = iterator.next();
+        int res = 0;
 
         while (iterator.hasNext()) {
             int currentNumber = iterator.next();
