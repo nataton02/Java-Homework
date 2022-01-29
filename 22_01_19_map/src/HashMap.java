@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 // TODO investigate and complete and test
 public class HashMap<K, V> implements Map<K, V>{
@@ -131,11 +132,63 @@ public class HashMap<K, V> implements Map<K, V>{
 
     @Override
     public Iterator<K> keyIterator() {
-        return null;
+        return new KeyIterator();
+    }
+
+    private class KeyIterator implements Iterator<K> {
+        int index;
+        int pairNumber = 0;
+        Pair<K, V> currentPair;
+
+        public KeyIterator() {
+            if(size == 0)
+                return;
+
+            while((currentPair = source[index]) == null)
+                index++;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return pairNumber < size;
+        }
+
+        @Override
+        public K next() {
+            if(pairNumber >= size)
+                throw new IndexOutOfBoundsException();
+
+            K res = currentPair.key;
+            if(currentPair.next != null)
+                currentPair = currentPair.next;
+            else {
+                index++;
+                while(index < source.length && (currentPair = source[index]) == null)
+                    index++;
+            }
+            pairNumber++;
+            return res;
+        }
     }
 
     @Override
     public Iterator<V> valueIterator() {
-        return null;
+        return new ValueIterator();
+    }
+
+    private class ValueIterator implements Iterator<V> {
+
+        KeyIterator keyIterator = new KeyIterator();
+
+        @Override
+        public boolean hasNext() {
+            return keyIterator.hasNext();
+        }
+
+        @Override
+        public V next() {
+            K key = keyIterator.next();
+            return get(key);
+        }
     }
 }
