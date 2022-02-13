@@ -1,0 +1,3 @@
+Jack 4 Poodle
+Mary 3 Newfoundland
+Han 4 Terrier
