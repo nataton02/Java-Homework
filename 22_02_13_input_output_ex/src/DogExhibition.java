@@ -1,11 +1,12 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.Scanner;
-import java.util.Set;
-import java.util.TreeSet;
+
+/*
+В файле input.txt записаны данные о собаках, привезённых на выставку: кличка, возраст и порода каждой собаки.
+Нужно записать в файл output.txt данные о всех собаках, которым меньше K лет.
+ */
 
 public class DogExhibition {
     public static void main(String[] args) {
