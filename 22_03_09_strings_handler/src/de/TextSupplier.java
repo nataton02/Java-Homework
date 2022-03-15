@@ -1,7 +1,6 @@
 package de;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
@@ -9,10 +8,12 @@ import java.util.concurrent.BlockingQueue;
 public class TextSupplier implements Runnable{
     private final String filename;
     private final BlockingQueue<String> queue;
+    private final int consumerNumber;
 
-    public TextSupplier(String filename, BlockingQueue<String> queue) {
+    public TextSupplier(String filename, BlockingQueue<String> queue, int consumerNumber) {
         this.filename = filename;
         this.queue = queue;
+        this.consumerNumber = consumerNumber;
     }
 
     @Override
@@ -22,6 +23,8 @@ public class TextSupplier implements Runnable{
             String line;
             while ((line = br.readLine()) != null)
                 queue.put(line);
+            for (int i = 0; i < consumerNumber; i++)
+                queue.put("exit");
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }

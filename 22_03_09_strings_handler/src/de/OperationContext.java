@@ -14,13 +14,13 @@ public class OperationContext {
 
     /**
      * The method creates the instances for all the operations by their names and places into operationSource
-     * @param operationsPaths the path to the operations
+     * @param operationsPaths the path to the operations ('de.operation.UpperCaseOperation')
      */
     public void loadOperations(List<String> operationsPaths) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         //TODO implement
         operationSource = new HashMap<>();
-        for (String operationsPath : operationsPaths) {
-            Class classOperation = Class.forName(operationsPath);
+        for (String path : operationsPaths) {
+            Class classOperation = Class.forName(path);
             IStringOperation operation = (IStringOperation) classOperation.getConstructor().newInstance();
             operationSource.put(operation.getName(), operation);
         }
