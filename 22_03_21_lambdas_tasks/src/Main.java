@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -81,6 +80,7 @@ public class Main {
         System.out.println(pr2.test(100));//true
 
 
+        
     }
 }
 
