@@ -66,7 +66,7 @@ public class Main {
         // 5. Написать класс PredicateService и методы в нем intersect и union, которые принимают лист предикатов,
         // а возвращают их пересечение и объединение соответственно. Протестировать
 
-        PredicateService<Integer> predicateService = new PredicateService();
+        PredicateService predicateService = new PredicateService();
         List<Predicate<Integer>> predicates = Arrays.asList(
                 x -> x > 0,
                 y -> y < 100,
