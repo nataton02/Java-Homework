@@ -86,7 +86,7 @@ class MainTest {
     // bad words
     @Test
     public void testFindBadWords() {
-        String text = "Lorem ipsum is simply dummy text of the printing and typesetting industry.";
+        String text = "Lorem ipsum is simply Dummy text of the printing and typesetting industry.";
         Set<String> badWords = new HashSet<>();
         badWords.add("ipsum");
         badWords.add("of");
