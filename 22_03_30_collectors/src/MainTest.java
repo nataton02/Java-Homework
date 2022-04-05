@@ -125,6 +125,6 @@ class MainTest {
         map.put("http://www.courses/php", 2L);
         map.put("http://www.courses/javascript", 2L);
         map.put("http://www.courses/mysql", 2L);
-        assertEquals(map, solution.countNumberOfVisits(entries));
+        assertEquals(map, solution.countClicksByUrl(entries));
     }
 }

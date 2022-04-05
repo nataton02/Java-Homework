@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.*;
 
@@ -27,7 +28,7 @@ public class Main {
                 .collect(partitioningBy((str) -> isPalindrome(str)));
     }
 
-    public static boolean isPalindrome(String string) {
+    protected static boolean isPalindrome(String string) {
         StringBuilder sb =  new StringBuilder(string);
         String newString = sb.reverse().toString();
         return string.equalsIgnoreCase(newString);
@@ -38,6 +39,11 @@ public class Main {
     public Map<Boolean, Long> countPalindromeAndNonPalindrome(List<String> strings) {
         return strings.stream()
                 .collect(partitioningBy((str) -> isPalindrome(str), counting()));
+    }
+
+    public Map<Boolean, Integer> countPalindromeAndNonPalindromeInt(List<String> strings) {
+        return strings.stream()
+                .collect(partitioningBy((str) -> isPalindrome(str), summingInt(str -> 1)));
     }
 
     // 4. Есть class Transaction{String uuid; long sum; String accountUuid}. Посчитать сумму транзакций
@@ -51,17 +57,26 @@ public class Main {
     // 5-a. Есть class LogEntry{String login, String url}
     // Посчитать для каждого url, сколько раз он был тыкнут
 
-    public Map<String, Long> countNumberOfVisits(List<LogEntry> visits) {
+    public Map<String, Integer> countClicksByUrl(List<LogEntry> visits) {
         return visits.stream()
-                .collect(groupingBy(LogEntry::getUrl, counting()));
+                .collect(groupingBy(LogEntry::getUrl, summingInt(str -> 1)));
     }
 
     //* 5-b Посчитать количество уникальных посещений каждого url
     // (необходимо обратить внимание на некоторые коллекторы, которые не были упомянуты на занятии)
 
+    public Map<String, Integer> getNumberVisitedUrlsByAccount(List<LogEntry> logs) {
+        return logs.stream()
+                .collect(groupingBy(LogEntry::getLogin, mapping(LogEntry::getUrl,
+                        collectingAndThen(toSet(), Set::size))));
+    }
 
     //* 5-c Вывести для каждого аккаунта Set посещенных страниц
 
+    public Map<String, Set<String>> getSetVisitedUrlsByAccount(List<LogEntry> logs) {
+        return logs.stream()
+                .collect(groupingBy(LogEntry::getLogin, mapping(LogEntry::getUrl, toSet())));
+    }
 }
 
 
