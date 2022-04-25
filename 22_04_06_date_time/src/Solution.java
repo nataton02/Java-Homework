@@ -21,6 +21,7 @@ public class Solution {
 
     }
 
+
     public static int getNumbersOfDaysUntilNewYear(LocalDate date) {
         LocalDate newYear = LocalDate.of(date.getYear(), 12, 31);
         return (int) ChronoUnit.DAYS.between(date, newYear);
@@ -29,12 +30,10 @@ public class Solution {
 
     public static int getNumbersOfDaysUntilBirthday(LocalDate date, int monthOfBirth, int dayOfBirth) {
         LocalDate birthday = LocalDate.of(date.getYear(), monthOfBirth, dayOfBirth);
-        LocalDate newYear = LocalDate.of(date.getYear(), 12, 31);
 
         if (birthday.isBefore(date)) {
-            int daysUntilNewYear = (int) ChronoUnit.DAYS.between(date, newYear);
-            int daysBetweenNewYearAndBirthday = (int) ChronoUnit.DAYS.between(newYear, birthday.plusYears(1));
-            return daysUntilNewYear + daysBetweenNewYearAndBirthday;
+            LocalDate nextBirthday = birthday.withYear(birthday.getYear() + 1);
+            return (int) ChronoUnit.DAYS.between(date, nextBirthday);
         }
         else return (int) ChronoUnit.DAYS.between(date, birthday);
     }
