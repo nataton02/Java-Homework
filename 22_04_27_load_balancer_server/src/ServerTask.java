@@ -3,36 +3,35 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class ServerTask implements Runnable{
+public class ServerTask implements Runnable {
     private final Socket socket;
-    private LoadCounter counter;
-    private int port;
+    private final AtomicInteger loadCounter;
 
-    public ServerTask(Socket socket, LoadCounter counter, int port) {
+    public ServerTask(Socket socket, AtomicInteger loadCounter) {
         this.socket = socket;
-        this.counter = counter;
-        this.port = port;
+        this.loadCounter = loadCounter;
     }
 
     @Override
     public void run() {
-        try {
-            counter.increment();
-            PrintStream dataOut = new PrintStream(socket.getOutputStream());
-            BufferedReader dataIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        try(PrintStream dataOut = new PrintStream(socket.getOutputStream());
+            BufferedReader dataIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));) {
 
             String line;
             while ((line = dataIn.readLine()) != null) {
-                String response = line + " handled by server on " + port;
+                String response = line + " handled by server";
                 dataOut.println(response);
             }
-            counter.decrement();
-            System.out.println("Socket closed");
+            System.out.println("Socked closed");
         } catch (IOException e) {
             e.printStackTrace();
-            counter.decrement();
+        } finally {
+            loadCounter.decrementAndGet();
         }
+
+
 
     }
 }
