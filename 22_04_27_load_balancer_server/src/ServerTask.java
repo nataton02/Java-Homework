@@ -26,7 +26,7 @@ public class ServerTask implements Runnable {
             }
             System.out.println("Socked closed");
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         } finally {
             loadCounter.decrementAndGet();
         }

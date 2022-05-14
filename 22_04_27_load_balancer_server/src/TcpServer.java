@@ -18,20 +18,17 @@ public class TcpServer implements Runnable{
 
     @Override
     public void run() {
-        try {
+        try (ServerSocket serverSocket = new ServerSocket(selfTcpPort)) {
             ExecutorService executorService = Executors.newFixedThreadPool(connectionsNumber);
-            ServerSocket serverSocket = new ServerSocket(selfTcpPort);
 
             while (true) {
                 Socket socket = serverSocket.accept();
                 loadCounter.incrementAndGet();
                 Runnable serverTask = new ServerTask(socket, loadCounter);
                 executorService.execute(serverTask);
-
             }
-
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 }

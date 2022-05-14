@@ -33,12 +33,15 @@ public class LoadSender implements Runnable{
                         balancerUdpPort
                 );
 
+                System.out.println(data);
                 datagramSocket.send(packet);
 
                 Thread.sleep(updatePeriod);
             }
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
 
     }

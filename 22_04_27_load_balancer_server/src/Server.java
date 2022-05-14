@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Main {
+public class Server {
     private static final String DEFAULT_PROPS_FILE = "config/application.props";
 
     private static final String BALANCER_HOST_KEY = "balancer.host";
@@ -22,16 +22,18 @@ public class Main {
         int balancerUdpPort = Integer.parseInt(props.getProperty(BALANCER_UDP_PORT_KEY));
         int selfTcpPort = Integer.parseInt(props.getProperty(SELF_TCP_PORT));
         int updatePeriod = Integer.parseInt(props.getProperty(LOAD_UPDATE_PERIOD_KEY));
-        int tcpConnectionsNumber = Integer.parseInt(props.getProperty(TCP_CONNECTIONS_NUMBER_KEY));
+        int connectionsNumber = Integer.parseInt(props.getProperty(TCP_CONNECTIONS_NUMBER_KEY));
 
         AtomicInteger loadCounter = new AtomicInteger();
 
         // thread for sending load data to balancer
         LoadSender loadSender = new LoadSender(loadCounter, selfTcpPort, balancerHost, balancerUdpPort, updatePeriod);
-        new Thread(loadSender).start();
+        Thread loadSenderThread = new Thread(loadSender);
+        loadSenderThread.setDaemon(true);
+        loadSenderThread.start();
 
         // thread for accepting tcp connections from gateway
-        TcpServer tcpServer = new TcpServer(loadCounter, selfTcpPort, tcpConnectionsNumber);
+        TcpServer tcpServer = new TcpServer(loadCounter, selfTcpPort, connectionsNumber);
         new Thread(tcpServer).start();
 
     }
