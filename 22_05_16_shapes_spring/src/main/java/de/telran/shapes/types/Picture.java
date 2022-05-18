@@ -1,5 +1,7 @@
 package de.telran.shapes.types;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Picture extends Shape{
@@ -9,7 +11,7 @@ public class Picture extends Shape{
 
     public Picture(char symbol, int borderLength, List<Shape> shapes) {
         super(symbol);
-        this.shapes = shapes;
+        this.shapes = new ArrayList<>(shapes);
         this.borderLength = borderLength;
         this.border = new Line(symbol, borderLength);
     }

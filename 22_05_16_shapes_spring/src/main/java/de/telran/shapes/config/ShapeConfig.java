@@ -16,19 +16,19 @@ public class ShapeConfig {
     // lines
     @Bean
     @Qualifier("picture1")
-    public Shape line1() {
+    public Line line1() {
         return new Line('*', 20);
     }
 
     @Bean
     @Qualifier("picture1")
-    public Shape line2() {
+    public Line line2() {
         return new Line('X', 30);
     }
 
     @Bean
     @Qualifier("picture2")
-    public Shape line3() {
+    public Line line3() {
         return new Line('#', 30);
     }
 
@@ -36,25 +36,25 @@ public class ShapeConfig {
     // rectangles
     @Bean
     @Qualifier("picture1")
-    public Shape rectangle1() {
+    public Rectangle rectangle1() {
         return new Rectangle(':', 3, 20);
     }
 
     @Bean
     @Qualifier("picture2")
-    public Shape rectangle2() {
+    public Rectangle rectangle2() {
         return new Rectangle('O', 3, 20);
     }
 
 
     // pictures
     @Bean
-    public Shape picture1(@Qualifier("picture1") List<Shape> shapes) {
+    public Picture picture1(@Qualifier("picture1") List<Shape> shapes) {
         return new Picture('=', 40, shapes);
     }
 
     @Bean
-    public Shape picture2(@Qualifier("picture2") List<Shape> shapes2) {
-        return new Picture('=', 40, shapes2);
+    public Picture picture2(@Qualifier("picture2") List<Shape> shapes) {
+        return new Picture('=', 40, shapes);
     }
 }

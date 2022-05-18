@@ -1,7 +1,7 @@
 package de.telran.shapes.types;
 
 public abstract class Shape {
-    private char symbol;
+    char symbol;
 
     public Shape(char symbol) {
         this.symbol = symbol;
