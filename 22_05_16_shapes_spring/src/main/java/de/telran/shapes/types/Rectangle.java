@@ -5,7 +5,7 @@ public class Rectangle extends Shape{
     private final int width;
     private final Line line;
 
-    public Rectangle(char symbol, int height, int width, Line line) {
+    public Rectangle(char symbol, int height, int width) {
         super(symbol);
         this.height = height;
         this.width = width;

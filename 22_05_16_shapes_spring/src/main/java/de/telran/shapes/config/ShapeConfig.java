@@ -37,13 +37,13 @@ public class ShapeConfig {
     @Bean
     @Qualifier("picture1")
     public Shape rectangle1() {
-        return new Rectangle(':', 3, 20, new Line(':', 20));
+        return new Rectangle(':', 3, 20);
     }
 
     @Bean
     @Qualifier("picture2")
     public Shape rectangle2() {
-        return new Rectangle('O', 3, 20, new Line('(', 30));
+        return new Rectangle('O', 3, 20);
     }
 
 
