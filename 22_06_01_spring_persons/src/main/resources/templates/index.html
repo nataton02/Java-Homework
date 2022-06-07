@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link th:href="@{style.css}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+    <div class="row">
+        <div class="col s6 offset-m3">
+            <div class="row">
+                <h3 class="col s7 ">Persons</h3>
+                <div class="col s5 push-s3">
+                    <a href="/new-person">
+                        <i class="medium material-icons">add</i>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <ul class="collection with-header">
+                    <li th:each="person: ${persons}" class="collection-item">
+                        <div>
+                            <a th:href="'/show-person/' + ${person.id}" th:text="${person.name}"></a>
+                            <a th:href="'/delete-person/' + ${person.id}" class="secondary-content">
+                                <i class="material-icons">delete</i>
+                            </a>
+                            <a th:href="'/edit-person/' + ${person.id}" class="secondary-content">
+                                <i class="material-icons">edit</i>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
