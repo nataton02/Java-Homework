@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <link th:href="@{style.css}" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
@@ -12,23 +12,23 @@
         <div class="col s6 offset-m3">
             <div class="row">
                 <h3 class="col s7 ">Persons</h3>
-                <div class="col s5 push-s3">
+                <div class="col s5 push-s3 add-person">
                     <a href="/new-person">
-                        <i class="medium material-icons">add</i>
+                        <i class="small material-icons">add</i>
                     </a>
                 </div>
             </div><!-- end row-->
 
             <div class="row">
                 <ul class="collection with-header">
-                    <li th:each="person: ${persons}" class="collection-item">
+                    <li th:each="person: ${persons}" class="collection-item grey lighten-5">
                         <div>
-                            <a th:href="'/show-person/' + ${person.id}" th:text="${person.name}"></a>
+                            <a th:href="'/show-person/' + ${person.id}" th:text="${person.name}" class="text-color"></a>
                             <a th:href="'/delete-person/' + ${person.id}" class="secondary-content">
-                                <i class="material-icons">delete</i>
+                                <i class="red-text material-icons">delete</i>
                             </a>
                             <a th:href="'/edit-person/' + ${person.id}" class="secondary-content">
-                                <i class="material-icons">edit</i>
+                                <i class="blue-text material-icons">edit</i>
                             </a>
                         </div>
                     </li>

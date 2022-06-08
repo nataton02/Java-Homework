@@ -15,10 +15,10 @@ public class PersonController {
         this.personService = personService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/persons")
     public String home(Model model) {
         model.addAttribute("persons", personService.getAll());
-        return "index";
+        return "persons";
     }
 
     @GetMapping("/new-person")
@@ -30,7 +30,7 @@ public class PersonController {
     @PostMapping("/save-person")
     public String savePerson(@ModelAttribute Person person) {
         personService.save(person);
-        return "redirect:/";
+        return "redirect:/persons";
     }
 
     @GetMapping("/edit-person/{id}")
@@ -42,7 +42,7 @@ public class PersonController {
     @GetMapping("/delete-person/{id}")
     public String deletePerson(@PathVariable int id) {
         personService.remove(personService.get(id));
-        return "redirect:/";
+        return "redirect:/persons";
     }
 
     @GetMapping("/show-person/{id}")

@@ -1,0 +1,25 @@
+.add-person {
+    margin-top: 40px;
+}
+.add-person .material-icons {
+    border-radius: 100%;
+    padding: 2px;
+    border: 2px solid #019CE5;
+    margin-left: 50px;
+}
+.add-person .material-icons:hover {
+    background-color: #019CE5;
+    color: white;
+}
+.blue-text:hover {
+    color: #186bad !important;
+}
+.red-text:hover {
+    color: #bb281c !important;
+}
+.text-color {
+    color: #3b3939;
+}
+.text-color:hover {
+    color: #155f9a;
+}
