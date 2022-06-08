@@ -38,7 +38,7 @@ public class PersonRepo {
      * @return
      */
     public Optional<Person> find(int id) {
-        return Optional.ofNullable((source.get(id)));
+        return Optional.ofNullable(source.get(id));
     }
 
     /**
