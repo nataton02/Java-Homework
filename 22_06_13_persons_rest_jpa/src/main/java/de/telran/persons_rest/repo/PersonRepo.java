@@ -12,6 +12,6 @@ public interface PersonRepo extends JpaRepository<Person, Integer> {
     public List<Person> findAllByName(String name);
     public List<Person> findAllByLastname(String lastname);
 
-    //public List<Person> findAllByAgeAfter(int age);
+    public List<Person> findAllByAgeGreaterThan(int age);
 
 }
