@@ -15,4 +15,5 @@ public class DogRequestDTO {
     private String dateOfBirth;
     private String registrationDate;
 
+
 }

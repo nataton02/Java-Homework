@@ -14,4 +14,5 @@ public class OwnerRequestDTO {
     private String firstName;
     private String lastName;
     private String dateOfBirth;
+    private List<Dog> dogs;
 }
