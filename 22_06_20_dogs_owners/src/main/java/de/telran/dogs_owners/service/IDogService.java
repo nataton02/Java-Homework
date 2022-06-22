@@ -10,7 +10,7 @@ public interface IDogService {
 
     void createDog(DogRequestDTO request);
 
-    List<DogResponseDTO> getAllDogs();
+    List<DogResponseDTO> getAllByOwnerId(Integer ownerId);
 
     DogResponseDTO getDogById(Integer id);
 

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,8 +30,14 @@ public class DogServiceImpl implements IDogService {
     }
 
     @Override
-    public List<DogResponseDTO> getAllDogs() {
-        return dogRepository.findAll().stream()
+    public List<DogResponseDTO> getAllByOwnerId(Integer ownerId) {
+        List<Dog> dogs;
+        if(ownerId != null)
+            dogs = dogRepository.findAllByOwnerId(ownerId);
+        else
+            dogs = dogRepository.findAll();
+
+        return dogs.stream()
                 .map(this::mapDogToDogResponse)
                 .collect(Collectors.toList());
     }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class DogController {
@@ -22,8 +23,8 @@ public class DogController {
     }
 
     @GetMapping("/dogs")
-    public List<DogResponseDTO> getAllDogs() {
-        return iDogService.getAllDogs();
+    public List<DogResponseDTO> getAllByOwnerId(@RequestParam (required = false) Integer ownerId) {
+        return iDogService.getAllByOwnerId(ownerId);
     }
 
     @GetMapping("/dogs/unregistered")
