@@ -32,10 +32,5 @@ public class OwnerController {
         iOwnerService.createOwner(request);
     }
 
-    //@PutMapping("/owners/{id}/dogs/{dogId}")
-    //public DogResponseDTO getOwnerById(@PathVariable("id") Integer id, Integer dogId) {
-    //    return iDogService.toggleDog(id, dogId);
-    //}
-
 
 }
